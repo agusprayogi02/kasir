@@ -45,8 +45,10 @@ class Admin extends CI_Controller
         if ($rest == 0) {
             // $this->session->set_flashdata('error', "<script>$('#error').modal('show')</script>");
             $this->session->set_flashdata('error', '<script>window.alert("Error! Not account can be deleted!");</script>');
-            redirect('admin/list_user', 'refresh');
+        } else {
+            $this->session->set_flashdata('error', '<script>window.alert("Success! The account have Deleted!");</script>');
         }
+        redirect('admin/list_user', 'refresh');
     }
 
     public function block_user($id = null)

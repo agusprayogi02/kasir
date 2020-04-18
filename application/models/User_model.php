@@ -34,6 +34,12 @@ class User_model extends CI_Model
         }
         return 'user.png';
     }
+
+    public function get_Item()
+    {
+        $data = $this->db->get('barang')->result();
+        return $data;
+    }
 }
 
 /* End of file User_model.php */

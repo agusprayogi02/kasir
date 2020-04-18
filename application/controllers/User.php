@@ -16,9 +16,29 @@ class User extends CI_Controller
         }
     }
 
-    public function index()
+    public function index($url = null, $ext = null)
     {
         $data = $this->user_model->get_data();
+        if ($ext != null) {
+            if ($ext === 'del') {
+                unset($_SESSION['shoping'][$url]);
+            } elseif ($ext === 'plus') {
+                $_SESSION['shoping'][$url] += 1;
+            } elseif ($ext === 'min') {
+                $_SESSION['shoping'][$url] -= 1;
+            }
+            redirect(base_url('user/index'), 'refresh');
+        } else {
+            if ($url != null) {
+                if (isset($_SESSION['shoping'][$url])) {
+                    $_SESSION['shoping'][$url] += 1;
+                } else {
+                    $_SESSION['shoping'][$url] = 1;
+                }
+                redirect(base_url('user/index'), 'refresh');
+            }
+        }
+        $data['data'] = $this->user_model->get_Item();
         $data['title'] = "Dashboard";
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_navbar', $data);

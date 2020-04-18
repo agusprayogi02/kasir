@@ -30,7 +30,7 @@
                         <div class="input-group-append">
                             <a class="input-group-text btn btn-danger" onclick="kurang($('#Stok').val())"><i class="fas fa-minus"></i></a>
                         </div>
-                        <input type="number" value="0" id="Stok" name="stok" class="form-control" placeholder="Input Stok Item...">
+                        <input type="number" value="1" id="Stok" name="stok" class="form-control" placeholder="Input Stok Item...">
                         <div class="input-group-append">
                             <a class="input-group-text btn btn-success" onclick="tambah($('#Stok').val())"><i class="fas fa-plus"></i></a>
                         </div>
