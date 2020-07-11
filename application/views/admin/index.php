@@ -149,7 +149,7 @@
                         <div class="row text-white m-2">
                             <a class="col-sm-2 btn btn-danger" onclick="kurang($('#stok').val())"><i class="fas fa-minus"></i></a>
                             <div class="col-sm-8">
-                                <input type="number" readonly class="form-control" name="item" id="stok" value="0" placeholder="Stock Items">
+                                <input type="number" readonly class="form-control" name="item" id="stok" value="<?= $item->stock_brg; ?>" placeholder="Stock Items">
                             </div>
                             <a class="col-sm-2 btn btn-success" onclick="tambah($('#stok').val())"><i class="fas fa-plus"></i></a>
                         </div>

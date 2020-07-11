@@ -19,10 +19,10 @@
               </tr>
             </thead>
             <?php $i = 1;
-            foreach ($data as $item) :
+            foreach ($data as $item) : 
               if (isset($session[$item->kode_brg])) : ?>
                 <tr>
-                  <th><?= $i; ?></th>
+                  <th class="text-center"><?= $i; ?>.</th>
                   <td><?= $item->name_brg; ?></td>
                   <td>
                     <div class="row justify-content-center">
@@ -34,19 +34,20 @@
                   <td class="text-center"><a href="<?= base_url('user/index/') . $item->kode_brg . '/del'; ?>" class="btn badge badge-danger"><i class="fa fa-trash-alt"></i></a></td>
                 </tr>
             <?php
+                $i++;
               endif;
             endforeach; ?>
           </table>
           <div class="row justify-content-end">
-            <button class="btn btn-outline-primary mr-3">Buys</button>
-            <button class="btn btn-outline-danger mr-3">Cencel</button>
+            <a class="btn btn-outline-primary mr-3" >Buys</a>
+            <a href="<?= base_url('user/index/unset'); ?>" class="btn btn-outline-danger mr-3">Cencel</a>
           </div>
         </div>
       </div>
     </div>
   <?php endif; ?>
 
-  <div class="card shadow-lg mb-">
+  <div class="card shadow-lg mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Daftar</h6>
     </div>

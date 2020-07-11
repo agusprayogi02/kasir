@@ -24,12 +24,26 @@ class User extends CI_Controller
                 unset($_SESSION['shoping'][$url]);
             } elseif ($ext === 'plus') {
                 $_SESSION['shoping'][$url] += 1;
-            } elseif ($ext === 'min') {
-                $_SESSION['shoping'][$url] -= 1;
+            }
+            elseif ($ext === 'min') {
+                if ($_SESSION['shoping'][$url] == 0) {
+                    unset($_SESSION['shoping'][$url]);
+                } else {
+                    $_SESSION['shoping'][$url] -= 1;
+                    if ($_SESSION['shoping'][$url] == 0) {
+                        unset($_SESSION['shoping'][$url]);
+                    }
+                }
             }
             redirect(base_url('user/index'), 'refresh');
-        } else {
+        } elseif ($url === 'unset') {
+            $this->session->unset_userdata('shoping');
+        }
+        else {
             if ($url != null) {
+                if (!isset($_SESSION['shoping'])) {
+                    $this->session->set_userdata('shoping');
+                }
                 if (isset($_SESSION['shoping'][$url])) {
                     $_SESSION['shoping'][$url] += 1;
                 } else {
