@@ -11,11 +11,11 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-                <?= $this->session->flashdata('succes') ?>
-                <?= form_open(base_url('auth/index'), 'class="user"') ?>
+                <?=$this->session->flashdata('succes')?>
+                <?=form_open(base_url('auth/index'), 'class="user"')?>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" name="email" value="<?= set_value('email'); ?>" id="exampleInputEmail" placeholder="Enter Email Address...">
-                  <?= form_error('email', '<small class="text-danger ml-4">', '</small>') ?>
+                  <input type="text" class="form-control form-control-user" name="email" value="<?=set_value('email');?>" id="exampleInputEmail" placeholder="Enter Email Address...">
+                  <?=form_error('email', '<small class="text-danger ml-4">', '</small>')?>
                 </div>
                 <div class="form-group">
                   <div class="input-group mb-3">
@@ -26,7 +26,7 @@
                       </a>
                     </div>
                   </div>
-                  <?= form_error('password', '<small class="text-danger ml-4">', '</small>') ?>
+                  <?=form_error('password', '<small class="text-danger ml-4">', '</small>')?>
                 </div>
                 <div class="form-group">
                   <div class="custom-control custom-checkbox small">
@@ -50,6 +50,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
   function ShowPass() {

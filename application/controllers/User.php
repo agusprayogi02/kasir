@@ -110,7 +110,7 @@ class User extends CI_Controller
 		$random = rand(0, 99999);
 		$total = 0;
 		foreach ($data as $item) {
-			if (isset($item->kode_brg)) {
+			if (isset($dt[$item->kode_brg])) {
 				$embo = array(
 					"kode_history" => $random,
 					"kode_brg" => $item->kode_brg,
