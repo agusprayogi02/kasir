@@ -125,7 +125,8 @@ class User extends CI_Controller
 		$isi = array(
 			"uid" => $user['id'],
 			"kode_history" => $random,
-			"total_byr" => $total
+			"total_byr" => $total,
+			"tanggal" => time()
 		);
 		$this->db->insert('riwayat', $isi);
 		if ($this->db->affected_rows() > 0) {
@@ -136,5 +137,13 @@ class User extends CI_Controller
 
 	public function histori()
 	{
+		$data = $this->user_model->get_data();
+		$data['title'] = "History";
+		$data['histori'] = $this->user_model->getHistori();
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_navbar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/histori', $data);
+		$this->load->view('templates/user_footer');
 	}
 }

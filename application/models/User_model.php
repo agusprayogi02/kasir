@@ -48,7 +48,15 @@ class User_model extends CI_Model
 
 	public function getHistori()
 	{
-		$data = $this->db->get('histori');
+		$this->db->select('*');
+		$this->db->from('histori');
+		$this->db->join('barang', 'barang.kode_brg = histori.kode_brg');
+		$data = $this->db->get();
+		return $data->result();
+	}
+	public function getRiwayat()
+	{
+		$data = $this->db->get('riwayat');
 		return $data->result();
 	}
 }
