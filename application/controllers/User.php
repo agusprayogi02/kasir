@@ -117,11 +117,14 @@ class User extends CI_Controller
 		$random = rand(0, 99999);
 		foreach ($data as $item) {
 			if (isset($dt[$item->kode_brg])) {
+				$kd = $this->user_model->getBykd($item->kode_brg);
+				$jumlah = $dt[$item->kode_brg];
 				$embo = array(
 					"kode_history" => $random,
 					"kode_brg" => $item->kode_brg,
-					"jumlah" => $dt[$item->kode_brg]
+					"jumlah" => $jumlah
 				);
+				$this->db->where('kode_brg', $item->kode_brg)->update('barang', array('stock_brg' => $kd['stock_brg'] - $jumlah));
 				$this->db->insert("histori", $embo);
 			}
 		}
@@ -130,7 +133,7 @@ class User extends CI_Controller
 			"uid" => $user['id'],
 			"kode_history" => $random,
 			"total_byr" => $total,
-			"tanggal" => now(),
+			"tanggal" => now('Asia/Jakarta'),
 			"bayar" => $uang
 		);
 		$this->db->insert('riwayat', $isi);
