@@ -264,4 +264,32 @@ class Admin extends CI_Controller
         $this->load->view('admin/histori', $data);
         $this->load->view('templates/user_footer');
     }
+
+    public function detail($kd = "")
+    {
+        if ($kd == "") {
+            $this->session->set_flashdata('error', '<script>window.alert("Error! Failed no code exists!");</script>');
+            redirect(base_url('user/histori'));
+        }
+        $data = $this->admin_model->get_data();
+        $data['title'] = "Details History";
+        $data['histori'] = $this->user_model->getDetailsHistori($kd);
+        $this->load->view('templates/user_header', $data);
+        $this->load->view('templates/user_navbar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/detail-histori', $data);
+        $this->load->view('templates/user_footer');
+    }
+
+    public function delete($kd = "")
+    {
+        if ($kd != "") {
+            $this->admin_model->deleteHistori($kd);
+            $this->session->set_flashdata('success', '<script>window.alert("Success! successfully deleted!");</script>');
+            redirect(base_url('admin/histori'));
+        } else {
+            $this->session->set_flashdata('error', '<script>window.alert("Error! Failed no code exists!");</script>');
+            redirect(base_url('admin/histori'));
+        }
+    }
 }

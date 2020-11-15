@@ -63,7 +63,7 @@ class User_model extends CI_Model
 
 	public function getRiwayatAll()
 	{
-		$data = $this->db->join('user', 'user.id = riwayat.uid')->get('riwayat');
+		$data = $this->db->join('user', 'user.id = riwayat.uid')->get_where('riwayat', array('onDelete' => '1'));
 		return $data->result();
 	}
 

@@ -41,11 +41,12 @@
                 <td>Rp.<?= $isi->price_brg ?></td>
                 <td><?= $isi->jumlah; ?></td>
                 <td>Rp.<?= $isi->price_brg * $isi->jumlah; ?></td>
-                <td><a href="<?= base_url('user/histori'); ?>" class="btn btn-primary"><i class="fa fa-fw fa-backward"></i><?php echo "  "; ?>Back</a></td>
+                <td><a href="<?= base_url($user['role_id'] === '1' ? 'admin/histori' : 'user/histori'); ?>" class="btn btn-primary"><i class="fa fa-fw fa-backward"></i><?php echo "  "; ?>Back</a></td>
               </tr>
             <?php
               $i++;
             endforeach; ?>
+          </tbody>
         </table>
       </div>
     </div>

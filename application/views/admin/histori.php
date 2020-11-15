@@ -39,7 +39,7 @@
                 <td><?= date("D M Y H:i", $isi->tanggal); ?></td>
                 <td>
                   <a href="<?= base_url('admin/detail/') . $isi->kode_history; ?>" class="btn btn-primary"><i class="fas fa-fw fa-info"></i>Detail</a> |
-                  <a href="<?= base_url('admin/delete/') . $isi->kode_history; ?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i>Delete</a>
+                  <a href="<?= base_url('admin/delete/') . $isi->id; ?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i>Delete</a>
                 </td>
               </tr>
             <?php

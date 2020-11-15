@@ -61,4 +61,14 @@ class Admin_model extends CI_model
         }
         return 'user.png';
     }
+
+    public function deleteHistori($id)
+    {
+        $data = array(
+            'onDelete' => '0'
+        );
+        $this->db->where('id', $id);
+        $upp = $this->db->update('riwayat', $data);
+        return $upp;
+    }
 }
