@@ -29,3 +29,5 @@
 </head>
 
 <body id="page-top">
+    <?= $this->session->flashdata('error'); ?>
+    <?= $this->session->flashdata('success'); ?>

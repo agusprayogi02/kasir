@@ -131,7 +131,8 @@ class User extends CI_Controller
 		$this->db->insert('riwayat', $isi);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->unset_userdata('shoping');
-			redirect(base_url('user/index'));
+			$this->session->set_flashdata('success', '<script>window.alert("Success! successfully made a purchase!");</script>');
+			redirect(base_url('user/histori'));
 		}
 	}
 
@@ -139,11 +140,27 @@ class User extends CI_Controller
 	{
 		$data = $this->user_model->get_data();
 		$data['title'] = "History";
-		$data['histori'] = $this->user_model->getHistori();
+		$data['histori'] = $this->user_model->getRiwayatByuid($data['user']['id']);
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_navbar', $data);
 		$this->load->view('templates/topbar', $data);
 		$this->load->view('user/histori', $data);
+		$this->load->view('templates/user_footer');
+	}
+
+	public function detail($kd = "")
+	{
+		if ($kd == "") {
+			$this->session->set_flashdata('error', '<script>window.alert("Error! Failed no code exists!");</script>');
+			redirect(base_url('user/histori'));
+		}
+		$data = $this->user_model->get_data();
+		$data['title'] = "Details History";
+		$data['histori'] = $this->user_model->getDetailsHistori($kd);
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_navbar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/detail-histori', $data);
 		$this->load->view('templates/user_footer');
 	}
 }

@@ -81,7 +81,7 @@
 							<tr>
 								<th scope="row" class="text-center"><?= $i; ?>.</th>
 								<td><?= $isi->name_brg; ?></td>
-								<td><?= $isi->price_brg; ?></td>
+								<td>Rp.<?= $isi->price_brg; ?></td>
 								<td><img src="<?= base_url('assets/img/barang/') . $isi->image_brg; ?>" class="img-thumbnail border-success" width="100" alt="<?= $isi->image_brg; ?>"></td>
 								<td><?= $isi->stock_brg; ?></td>
 								<td><a href="<?= base_url('user/index/') . $isi->kode_brg; ?>" class="btn btn-primary"><i class="fa fa-fw fa-plus-square"></i><?php echo "  "; ?>Add</a></td>
@@ -89,6 +89,7 @@
 						<?php
 							$i++;
 						endforeach; ?>
+					</tbody>
 				</table>
 			</div>
 		</div>

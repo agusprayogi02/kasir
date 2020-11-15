@@ -54,9 +54,24 @@ class User_model extends CI_Model
 		$data = $this->db->get();
 		return $data->result();
 	}
-	public function getRiwayat()
+
+	public function getRiwayatByuid($id)
 	{
-		$data = $this->db->get('riwayat');
+		$data = $this->db->where('uid', $id)->get('riwayat');
+		return $data->result();
+	}
+
+	public function getRiwayatAll()
+	{
+		$data = $this->db->join('user', 'user.id = riwayat.uid')->get('riwayat');
+		return $data->result();
+	}
+
+	public function getDetailsHistori($kd)
+	{
+		$data = $this->db->where('kode_history', $kd)->join('barang', 'barang.kode_brg = histori.kode_brg')->get('histori');
+		// var_dump($data);
+		// die();
 		return $data->result();
 	}
 }

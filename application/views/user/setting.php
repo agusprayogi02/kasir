@@ -1,7 +1,6 @@
 <div class="container row">
     <div class="card m-2 col-xl-8">
         <div class="card-body p-4">
-            <?= $this->session->flashdata('error'); ?>
 
             <?= form_open_multipart('user/setting'); ?>
             <div class="form-group row">
