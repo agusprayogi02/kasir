@@ -284,8 +284,12 @@ class Admin extends CI_Controller
     public function delete($kd = "")
     {
         if ($kd != "") {
-            $this->admin_model->deleteHistori($kd);
-            $this->session->set_flashdata('success', '<script>window.alert("Success! successfully deleted!");</script>');
+            $del = $this->admin_model->deleteHistori($kd);
+            if ($del > 0) {
+                $this->session->set_flashdata('success', '<script>window.alert("Success! successfully deleted!");</script>');
+            } else {
+                $this->session->set_flashdata('error', '<script>window.alert("Error! Failed deleted Item!");</script>');
+            }
             redirect(base_url('admin/histori'));
         } else {
             $this->session->set_flashdata('error', '<script>window.alert("Error! Failed no code exists!");</script>');

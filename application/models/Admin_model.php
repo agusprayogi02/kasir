@@ -67,8 +67,8 @@ class Admin_model extends CI_model
         $data = array(
             'onDelete' => '0'
         );
-        $this->db->where('id', $id);
-        $upp = $this->db->update('riwayat', $data);
-        return $upp;
+        $this->db->where('nomor', $id);
+        $this->db->update('riwayat', $data);
+        return $this->db->affected_rows();
     }
 }

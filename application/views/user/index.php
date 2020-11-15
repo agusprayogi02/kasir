@@ -3,7 +3,7 @@
 
 	<?php if ($this->session->userdata('shoping')) :
 		$session = $this->session->userdata('shoping'); ?>
-		<div class="col-lg-9 col-xl-7 col-md-11">
+		<div class="col-lg-10 col-xl-8 col-md-11">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h6 class="m-0 font-weight-bold text-primary">List Shoping</h6>
@@ -14,13 +14,19 @@
 							<tr>
 								<th width="5%">No.</th>
 								<th>Name</th>
+								<th>Jumlah</th>
 								<th>Total</th>
 								<th>delete</th>
 							</tr>
 						</thead>
 						<?php $i = 1;
+						$total = 0;
 						foreach ($data as $item) :
-							if (isset($session[$item->kode_brg])) : ?>
+							if (isset($session[$item->kode_brg])) :
+								$jumlah = 0;
+								$jumlah = $session[$item->kode_brg] * $item->price_brg;
+								$total += $jumlah;
+						?>
 								<tr>
 									<th class="text-center"><?= $i; ?>.</th>
 									<td><?= $item->name_brg; ?></td>
@@ -31,15 +37,18 @@
 											<a href="<?= base_url('user/index/') . $item->kode_brg . '/min'; ?>" class="btn badge badge-danger col-sm-2"><i class="fa fa-fw fa-minus"></i></a>
 										</div>
 									</td>
+									<td>Rp.<?= $jumlah ?></td>
 									<td class="text-center"><a href="<?= base_url('user/index/') . $item->kode_brg . '/del'; ?>" class="btn badge badge-danger"><i class="fa fa-trash-alt"></i></a></td>
 								</tr>
 						<?php
 								$i++;
 							endif;
-						endforeach; ?>
+						endforeach;
+						$_SESSION['total'] = $total;
+						?>
 					</table>
 					<div class="row justify-content-end">
-						<a class="btn btn-outline-primary mr-3" href="<?= base_url('user/tambah') ?>">Buys</a>
+						<a class="btn btn-outline-primary mr-3" href="<?= base_url('user/checkOut') ?>">Check Out</a>
 						<a href="<?= base_url('user/index/unset'); ?>" class="btn btn-outline-danger mr-3">Cencel</a>
 					</div>
 				</div>

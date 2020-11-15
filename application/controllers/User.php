@@ -8,6 +8,7 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->helper('date');
 		$this->load->library('form_validation');
 		if (!$this->session->userdata('email')) {
 			redirect('auth', 'refresh');
@@ -105,10 +106,15 @@ class User extends CI_Controller
 
 	public function tambah()
 	{
+		$uang = $this->input->post('uang');
+		$total = $this->input->post('total');
+		if ($uang < $total) {
+			$this->session->set_flashdata('error', '<script>window.alert("Error! Uang Tidak Cukup untuk beli Barang!");</script>');
+			redirect(base_url('user/checkOut'));
+		}
 		$data = $this->user_model->get_Item();
 		$dt = $this->session->userdata('shoping');
 		$random = rand(0, 99999);
-		$total = 0;
 		foreach ($data as $item) {
 			if (isset($dt[$item->kode_brg])) {
 				$embo = array(
@@ -117,8 +123,6 @@ class User extends CI_Controller
 					"jumlah" => $dt[$item->kode_brg]
 				);
 				$this->db->insert("histori", $embo);
-				$kd = $this->user_model->getBykd($item->kode_brg);
-				$total += $kd['price_brg'] * $dt[$item->kode_brg];
 			}
 		}
 		$user = $this->user_model->get_data()['user'];
@@ -126,7 +130,8 @@ class User extends CI_Controller
 			"uid" => $user['id'],
 			"kode_history" => $random,
 			"total_byr" => $total,
-			"tanggal" => time()
+			"tanggal" => now(),
+			"bayar" => $uang
 		);
 		$this->db->insert('riwayat', $isi);
 		if ($this->db->affected_rows() > 0) {
@@ -161,6 +166,18 @@ class User extends CI_Controller
 		$this->load->view('templates/user_navbar', $data);
 		$this->load->view('templates/topbar', $data);
 		$this->load->view('user/detail-histori', $data);
+		$this->load->view('templates/user_footer');
+	}
+
+	public function checkOut()
+	{
+		$data = $this->user_model->get_data();
+		$data['data'] = $this->user_model->get_Item();
+		$data['title'] = "Check Out";
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_navbar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/check-out', $data);
 		$this->load->view('templates/user_footer');
 	}
 }
