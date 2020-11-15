@@ -35,7 +35,7 @@
                   <td><?= $isi->kode_history; ?></td>
                   <td>Rp.<?= $isi->total_byr ?></td>
                   <td><?= date("D M Y H:i", $isi->tanggal); ?></td>
-                  <td><a href="<?= base_url('user/detail/') . $isi->kode_history; ?>" class="btn btn-primary">Detail</a></td>
+                  <td><a href="<?= base_url('user/detail/') . $isi->kode_history; ?>" class="btn btn-primary"><i class="fas fa-fw fa-info"></i>Detail</a></td>
                 </tr>
               <?php
                 $i++;

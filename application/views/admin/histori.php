@@ -1,6 +1,5 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
   <div class="card shadow-lg mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?></h6>
@@ -11,23 +10,21 @@
           <thead class="thead-light">
             <tr>
               <th scope="col" width="3%">No</th>
-              <th>Name</th>
-              <th>Image</th>
-              <th>Price</th>
-              <th>Amount</th>
-              <th>Total</th>
-              <th>Back</th>
+              <th>User</th>
+              <th>Kode Pembalian</th>
+              <th>Total Bayar</th>
+              <th>Tanggal Beli</th>
+              <th>Detail Pembelian</th>
             </tr>
           </thead>
           <tfoot class="thead-light">
             <tr>
               <th scope="col">No.</th>
-              <th>Name</th>
-              <th>Image</th>
-              <th>Price</th>
-              <th>Amount</th>
-              <th>Total</th>
-              <th>Back</th>
+              <th>User</th>
+              <th>Kode Pembalian</th>
+              <th>Total Bayar</th>
+              <th>Tanggal Beli</th>
+              <th>Detail Pembelian</th>
             </tr>
           </tfoot>
           <tbody>
@@ -36,21 +33,24 @@
             foreach ($histori as $isi) : ?>
               <tr>
                 <th scope="row" class="text-center"><?= $i; ?>.</th>
-                <td><?= $isi->name_brg; ?></td>
-                <td><img src="<?= base_url('assets/img/barang/') . $isi->image_brg; ?>" class="img-thumbnail border-success" width="100" alt="<?= $isi->image_brg; ?>"></td>
-                <td>Rp.<?= $isi->price_brg ?></td>
-                <td><?= $isi->jumlah; ?></td>
-                <td>Rp.<?= $isi->price_brg * $isi->jumlah; ?></td>
-                <td><a href="<?= base_url('user/histori'); ?>" class="btn btn-primary"><i class="fa fa-fw fa-backward"></i><?php echo "  "; ?>Back</a></td>
+                <th><?= $isi->name ?></th>
+                <td><?= $isi->kode_history; ?></td>
+                <td>Rp.<?= $isi->total_byr ?></td>
+                <td><?= date("D M Y H:i", $isi->tanggal); ?></td>
+                <td>
+                  <a href="<?= base_url('admin/detail/') . $isi->kode_history; ?>" class="btn btn-primary"><i class="fas fa-fw fa-info"></i>Detail</a> |
+                  <a href="<?= base_url('admin/delete/') . $isi->kode_history; ?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i>Delete</a>
+                </td>
               </tr>
             <?php
               $i++;
             endforeach; ?>
+          </tbody>
         </table>
       </div>
     </div>
   </div>
-
 </div>
 <!-- /.container-fluid -->
 </div>
+<!-- End of Main Content -->

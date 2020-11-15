@@ -33,6 +33,13 @@
             </a>
         </li>
 
+        <li class="nav-item mt-n3">
+            <a class="nav-link" href="<?= base_url('admin/histori'); ?>">
+                <i class="fas fa-fw fa-history"></i>
+                <span>Histori</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 

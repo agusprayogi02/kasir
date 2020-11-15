@@ -8,6 +8,7 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('admin_model');
+        $this->load->model('user_model');
         if (!$this->session->userdata('email')) {
             redirect('auth', 'refresh');
         } else if ($this->session->userdata('role_id') == 2) {
@@ -250,5 +251,17 @@ class Admin extends CI_Controller
             }
             redirect(base_url('admin/profile'));
         }
+    }
+
+    public function histori()
+    {
+        $data = $this->admin_model->get_data();
+        $data['histori'] = $this->user_model->getRiwayatAll();
+        $data['title'] = "Histori";
+        $this->load->view('templates/user_header', $data);
+        $this->load->view('templates/admin_navbar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/histori', $data);
+        $this->load->view('templates/user_footer');
     }
 }
