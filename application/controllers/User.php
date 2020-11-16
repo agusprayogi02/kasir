@@ -21,10 +21,16 @@ class User extends CI_Controller
 	{
 		$data = $this->user_model->get_data();
 		if ($ext != null) {
+			$item = $this->user_model->getItemByKode($url)[0];
 			if ($ext === 'del') {
 				unset($_SESSION['shoping'][$url]);
 			} elseif ($ext === 'plus') {
-				$_SESSION['shoping'][$url] += 1;
+				$jumlah = $item->stock_brg - ($_SESSION['shoping'][$url] + 1);
+				if ($jumlah > 0) {
+					$_SESSION['shoping'][$url] += 1;
+				} else {
+					$this->session->set_flashdata('error', '<script>window.alert("Error! Stok Habis!");</script>');
+				}
 			} elseif ($ext === 'min') {
 				if ($_SESSION['shoping'][$url] == 0) {
 					unset($_SESSION['shoping'][$url]);
@@ -40,13 +46,24 @@ class User extends CI_Controller
 			$this->session->unset_userdata('shoping');
 		} else {
 			if ($url != null) {
+				$item = $this->user_model->getItemByKode($url)[0];
 				if (!isset($_SESSION['shoping'])) {
 					$this->session->set_userdata('shoping');
 				}
 				if (isset($_SESSION['shoping'][$url])) {
-					$_SESSION['shoping'][$url] += 1;
+					$jumlah = $item->stock_brg - $_SESSION['shoping'][$url];
+					if ($jumlah > 0) {
+						$_SESSION['shoping'][$url] += 1;
+					} else {
+						$this->session->set_flashdata('error', '<script>window.alert("Error! Stok Habis!");</script>');
+					}
 				} else {
-					$_SESSION['shoping'][$url] = 1;
+					$jumlah = (int) $item->stock_brg;
+					if ($jumlah > 0) {
+						$_SESSION['shoping'][$url] = 1;
+					} else {
+						$this->session->set_flashdata('error', '<script>window.alert("Error! Stok Habis!");</script>');
+					}
 				}
 				redirect(base_url('user/index'), 'refresh');
 			}

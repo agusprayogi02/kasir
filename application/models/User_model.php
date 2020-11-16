@@ -74,6 +74,12 @@ class User_model extends CI_Model
 		// die();
 		return $data->result();
 	}
+
+	public function getItemByKode($kode)
+	{
+		$data = $this->db->where('kode_brg', $kode)->get("barang");
+		return $data->result();
+	}
 }
 
 /* End of file User_model.php */
