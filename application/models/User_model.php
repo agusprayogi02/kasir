@@ -57,13 +57,13 @@ class User_model extends CI_Model
 
 	public function getRiwayatByuid($id)
 	{
-		$data = $this->db->where('uid', $id)->order_by('nomor', 'DESC')->get('riwayat');
+		$data = $this->db->where('uid', $id)->order_by('id', 'DESC')->get('riwayat');
 		return $data->result();
 	}
 
 	public function getRiwayatAll()
 	{
-		$data = $this->db->join('user', 'user.id = riwayat.uid')->order_by('nomor', 'DESC')->get_where('riwayat', array('onDelete' => '1'));
+		$data = $this->db->join('user', 'user.id = riwayat.uid')->order_by('id', 'DESC')->get_where('riwayat', array('onDelete' => '1'));
 		return $data->result();
 	}
 
