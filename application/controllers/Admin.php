@@ -190,7 +190,10 @@ class Admin extends CI_Controller
         $id = $this->session->userdata('id');
         $image = $this->admin_model->_uploadImage();
         if ($image == 'error') {
-            $this->session->set_flashdata('error', '<script>window.alert("Error! Don\'t a Image Is Uploaded!");</script>');
+            var_dump($this->upload->display_errors());
+            die;
+            $err = $this->upload->display_errors("<script>window.alert('", "');</script>");
+            $this->session->set_flashdata('error', $err);
             redirect('admin/add_item', 'refresh');
         } else {
             $kode = "U" + $id + "KD" + random_int(1, 9999);

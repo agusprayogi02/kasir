@@ -35,6 +35,24 @@
                 <span>History</span></a>
         </li>
 
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Lainnya
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('user/galeri'); ?>">
+                <i class="fas fa-fw fa-image"></i>
+                <span>Gallery</span>
+            </a>
+        </li>
+        <li class="nav-item mt-n3">
+            <a class="nav-link" href="<?= base_url('user/kontak'); ?>">
+                <i class="fas fa-fw fa-info"></i>
+                <span>Contact us</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

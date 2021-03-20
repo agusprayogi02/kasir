@@ -88,7 +88,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?= form_open(base_url('admin/change_item'), 'class="user ml-2"'); ?>
+                    <?= form_open_multipart(base_url('admin/change_item'), 'class="user ml-2"'); ?>
                     <input type="hidden" name="id" value="<?= $item->kode_brg; ?>">
                     <div class="form-group row">
                         <label for="fullname" class="col-sm-2 col-form-label">Name</label>

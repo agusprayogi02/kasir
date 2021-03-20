@@ -200,4 +200,27 @@ class User extends CI_Controller
 		$this->load->view('user/check-out', $data);
 		$this->load->view('templates/user_footer');
 	}
+
+	public function galeri()
+	{
+		$data = $this->user_model->get_data();
+		$data['data'] = $this->user_model->get_Item();
+		$data['title'] = "Gallery";
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_navbar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/galeri', $data);
+		$this->load->view('templates/user_footer');
+	}
+
+	public function kontak()
+	{
+		$data = $this->user_model->get_data();
+		$data['title'] = "Contact us";
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_navbar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/kontak', $data);
+		$this->load->view('templates/user_footer');
+	}
 }
